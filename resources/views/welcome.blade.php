@@ -160,14 +160,14 @@
     <div class="banner wow zoomIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="section-header text-center">
-                <p>Reasonable Price</p>
+                <p>Annonces</p>
                 <h2>Get A <span>Special</span> Price</h2>
             </div>
             <div class="container banner-text">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus.
                 </p>
-                <a class="btn">Pricing Plan</a>
+                <a class="btn">Plan tarifaire</a>
             </div>
         </div>
     </div>
@@ -268,14 +268,12 @@
     <div class="banner wow zoomIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="section-header text-center">
-                <p>Awesome Discount</p>
-                <h2>Get <span>30%</span> Discount</h2>
+                <p>RABAIS IMPRESSIONNANT</p>
+                <h2>Obtenez <span>{{$discount->amount}}%</span> de réduction</h2>
             </div>
             <div class="container banner-text">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus.
-                </p>
-                <a class="btn">Order Now</a>
+                <p>{{ $discount->description }} </p>
+                <a class="btn">Commandez maintenant</a>
             </div>
         </div>
     </div>
@@ -429,9 +427,6 @@
     <!-- Testimonial End -->
 
 
-
-
-
     <!-- Contact Start -->
     <div class="contact wow fadeInUp" data-wow-delay="0.1s" id="contact">
         <div class="container-fluid">
@@ -477,11 +472,11 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="footer-info">
-                    <h2>BORN IN</h2>
-                    <h3>30090 OUED FES, FES, MOROCCO</h3>
+                    <h2>BASED IN</h2>
+                    <h3>{{$contact->address}}</h3>
                     <div class="footer-menu">
-                        <p>+012 345 67890</p>
-                        <p>trensrealcontent@gmail.com</p>
+                        <p>{{$contact->phone}}</p>
+                        <p>{{$contact->email}}</p>
                     </div>
                     <div class="footer-social">
                         <a href=""><i class="fab fa-twitter"></i></a>
@@ -493,7 +488,7 @@
                 </div>
             </div>
             <div class="container copyright">
-                <p>&copy; <a href="#">DEVLAB</a>, All Right Reserved</p>
+                <p>&copy; <a href="#">FESCODE</a>, All Right Reserved</p>
             </div>
         </div>
     </div>

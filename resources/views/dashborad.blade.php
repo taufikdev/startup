@@ -27,8 +27,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="sidebar col-md-2">
-                <img src="img/logo.png" alt="Hero Image" width="60px" style="margin-left:4em;">
-                <ul class="list-group mt-2">
+                <img src="img/logo.png" alt="Hero Image" width="60px" style="margin-left:4em;" class="mb-4">
+                <ul class="list-group mt-4">
                     <a href="">
                         <li class="itemo" id="itmFirst"><i class="fa fa-home"></i>&nbsp;Welcome </li>
                     </a>
@@ -41,14 +41,17 @@
                     <a href="">
                         <li class="itemo"><i class="fa fa-laptop"></i>&nbsp;Portfolio </li>
                     </a>
+                    <a href="/discount">
+                        <li class="itemo"><i class="fa fa-arrow-circle-down"></i>&nbsp;Discount </li>
+                    </a>
                     <a href="">
                         <li class="itemo"><i class="fa fa-donate"></i>&nbsp;&nbsp;Plans </li>
                     </a>
                     <a href="">
                         <li class="itemo"><i class="fa fa-layer-group"></i>&nbsp;&nbsp;Stack </li>
                     </a>
-                    <a href="">
-                        <li class="itemo"><i class="fa fa-address-book"></i>&nbsp;&nbsp;Coordenate</li>
+                    <a href="/contact">
+                        <li class="itemo"><i class="fa fa-address-book"></i>&nbsp;&nbsp;Contacts</li>
                     </a>
                     <a href="">
                         <li class="itemo" id="itmLast"><i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li>
