@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CmsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HeroController;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/hero', function () {
 //     return view('hero');
 // });
+
+Route::get('/cms',[CmsController::class,'index']);
 
 //Hero routes
 

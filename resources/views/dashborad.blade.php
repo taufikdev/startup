@@ -29,7 +29,7 @@
             <div class="sidebar col-md-2">
                 <img src="img/logo.png" alt="Hero Image" width="60px" style="margin-left:4em;" class="mb-4">
                 <ul class="list-group mt-4">
-                    <a href="">
+                    <a href="/cms">
                         <li class="itemo" id="itmFirst"><i class="fa fa-home"></i>&nbsp;Welcome </li>
                     </a>
                     <a href="/add-hero">

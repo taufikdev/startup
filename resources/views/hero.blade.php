@@ -37,12 +37,7 @@
     </div>
 
 </div>
-<br>
-<div class="card">
 
-
-
-</div>
 <script>
     $(document).ready(function() {
         function previewFile(input) {

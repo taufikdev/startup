@@ -292,20 +292,25 @@
                     <div class="price-item">
                         <div class="price-header">
                             <div class="price-title">
-                                <h2>Basic</h2>
+                                <h2>{{$plans[0]->name}}</h2>
                             </div>
                             <div class="price-prices">
-                                <h2><small></small>2800<span> DH</span></h2>
+                                <h2><small></small>{{$plans[0]->price}}<span> DH</span></h2>
                             </div>
                         </div>
                         <div class="price-body">
                             <div class="price-description">
                                 <ul>
-                                    <li>Bootstrap 4</li>
+                                    <!-- <li>Bootstrap 4</li>
                                     <li>Font Awesome 5</li>
                                     <li>Responsive Design</li>
-                                    <li>Browser Compatibility</li>
-                                    <li>Easy To Use</li>
+                                    <li>Browser Compatibility</li> -->
+                                    <!-- <li>Easy To Use</li> -->
+                                    @foreach($plan_caracters as $caracter)
+                                    @if($caracter->plan_id == $plans[0]->id)
+                                    <li>{{$caracter->name}}</li>
+                                    @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -320,20 +325,25 @@
                     <div class="price-item featured-item">
                         <div class="price-header">
                             <div class="price-title">
-                                <h2>Standard</h2>
+                                <h2>{{$plans[1]->name}}</h2>
                             </div>
                             <div class="price-prices">
-                                <h2><b>3500</b><span> DH</span></h2>
+                                <h2><b>{{$plans[1]->price}}</b><span> DH</span></h2>
                             </div>
                         </div>
                         <div class="price-body">
                             <div class="price-description">
                                 <ul>
-                                    <li>Bootstrap 4</li>
+                                    <!-- <li>Bootstrap 4</li>
                                     <li>Font Awesome 5</li>
                                     <li>Responsive Design</li>
                                     <li>Browser Compatibility</li>
-                                    <li>Easy To Use</li>
+                                    <li>Easy To Use</li> -->
+                                    @foreach($plan_caracters as $caracter)
+                                    @if($caracter->plan_id == $plans[1]->id)
+                                    <li>{{$caracter->name}}</li>
+                                    @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -348,20 +358,20 @@
                     <div class="price-item">
                         <div class="price-header">
                             <div class="price-title">
-                                <h2>Premium</h2>
+                                <h2>{{$plans[2]->name}}</h2>
                             </div>
                             <div class="price-prices">
-                                <h2>7000<span> DH</span></h2>
+                                <h2>{{$plans[2]->price}}<span> DH</span></h2>
                             </div>
                         </div>
                         <div class="price-body">
                             <div class="price-description">
                                 <ul>
-                                    <li>Bootstrap 4</li>
-                                    <li>Font Awesome 5</li>
-                                    <li>Responsive Design</li>
-                                    <li>Browser Compatibility</li>
-                                    <li>Easy To Use</li>
+                                    @foreach($plan_caracters as $caracter)
+                                        @if($caracter->plan_id == $plans[2]->id)
+                                            <li>{{$caracter->name}}</li>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
