@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\PlanCaracters;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -11,8 +12,8 @@ class PlanController extends Controller
     public function index()
     {
         $plans = Plan::all();
-        
-        return view('plan',['plans'=>$plans]);
+        $plan_caracters = PlanCaracters::all();
+        return view('plan',['plans'=>$plans,'plan_caracters'=>$plan_caracters]);
     }
 
     /**
@@ -65,9 +66,13 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $response = array(
+            'status' => 'success',
+            'str' => $request->message,
+        );
+        return response()->json($response);
     }
 
     /**

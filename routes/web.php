@@ -6,6 +6,7 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\PlanController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,3 +41,11 @@ Route::post('/contact/update', [ContactController::class, 'update'])->name('cont
 //Discount routes
 Route::get('/discount', [DiscountController::class, 'index']);
 Route::post('/discount/update', [DiscountController::class, 'update'])->name('discount.update');
+
+
+//plan routes
+Route::get('/plan', [PlanController::class, 'index']);
+Route::post('/plan/update', [PlanController::class, 'update']);
+// Route::get('/plan/update', [PlanController::class, 'update'])->name('plan.update');
+
+// Route::post('/discount/update', [DiscountController::class, 'update'])->name('discount.update');
