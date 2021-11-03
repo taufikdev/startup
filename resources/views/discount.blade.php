@@ -1,7 +1,7 @@
 @extends('dashborad')
 @section('content')
 <div class="jumbotron">
-    <h2>Contact management</h2>
+    <h2>Discount management</h2>
     <hr>
     @if(Session::has('success'))
     <div class="alert alert-success" role="alert">

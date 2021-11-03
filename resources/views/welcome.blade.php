@@ -83,9 +83,6 @@
     </div>
     <!-- Hero End -->
 
-
-
-
     <!-- Service Start -->
     <div class="service" id="service">
         <div class="container">
@@ -96,10 +93,10 @@
             <div class="row">
                 @foreach($services as $service)
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.0s">
-                    <div class="service-item">
-                        <div class="service-icon">
+                    <div class="service-item" style="border-radius: .3em;">
+                        <div class="service-icon" style="border-radius: .3em;">
                             <!-- <i class="fa fa-laptop"></i> -->
-                            <img src="images/{{$service->img}}" width="143.25px" height="150px" alt="">
+                            <img src="images/{{$service->img}}" alt="">
 
                         </div>
                         <div class="service-text">
@@ -368,9 +365,9 @@
                             <div class="price-description">
                                 <ul>
                                     @foreach($plan_caracters as $caracter)
-                                        @if($caracter->plan_id == $plans[2]->id)
-                                            <li>{{$caracter->name}}</li>
-                                        @endif
+                                    @if($caracter->plan_id == $plans[2]->id)
+                                    <li>{{$caracter->name}}</li>
+                                    @endif
                                     @endforeach
                                 </ul>
                             </div>

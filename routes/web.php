@@ -4,6 +4,7 @@ use App\Http\Controllers\CmsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\PlanCaractersController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\PlanController;
@@ -45,7 +46,11 @@ Route::post('/discount/update', [DiscountController::class, 'update'])->name('di
 
 //plan routes
 Route::get('/plan', [PlanController::class, 'index']);
+Route::post('/plan/show', [PlanController::class, 'show']);
 Route::post('/plan/update', [PlanController::class, 'update']);
 // Route::get('/plan/update', [PlanController::class, 'update'])->name('plan.update');
-
 // Route::post('/discount/update', [DiscountController::class, 'update'])->name('discount.update');
+
+//Plan Caracters routes
+Route::post('/plan-caracters/add', [PlanCaractersController::class, 'store']);
+Route::post('/plan-caracters/delete', [PlanCaractersController::class, 'destroy']);

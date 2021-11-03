@@ -16,71 +16,57 @@ class PlanController extends Controller
         return view('plan',['plans'=>$plans,'plan_caracters'=>$plan_caracters]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function show(Request $request)
     {
-        //
+        $planId = $request->plan_id;
+        $plan = Plan::find($planId);
+        $plan_caracters = PlanCaracters::where('plan_id', $planId)->get();
+        $response = array(
+            'status' => 'success',
+            'selectedPlan' => $plan,
+            'plan_caracters' => $plan_caracters,
+        );
+        return response()->json($response);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request)
     {
+        $planId = $request->plan_id;
+        $plan = Plan::find($planId);
+        $plan->price = $request->plan_price;
+        $plan->save();
+        $plans = Plan::all();
+        $plan_caracters = PlanCaracters::where('plan_id',$planId)->get();
         $response = array(
             'status' => 'success',
-            'str' => $request->message,
+            // 'selectedPlan' => $plan,
+            'plans' => $plans,
+            'plan_caracters' => $plan_caracters,
         );
         return response()->json($response);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
         //
