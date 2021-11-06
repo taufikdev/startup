@@ -8,8 +8,10 @@ use App\Http\Controllers\PlanCaractersController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PortfolioCategoriesController;
 use App\Http\Controllers\StackController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PortfolioCategory;
 use Illuminate\Support\Facades\Route;
 
 
@@ -68,3 +70,12 @@ Route::put('/update-stack', [StackController::class, 'update'])->name('stack.upd
 //Portfolio routes
 
 Route::get('/portfolio', [PortfolioController::class, 'index']);
+Route::post('/portfolio/add', [PortfolioController::class, 'store'])->name('portfolio.store');
+Route::post('/portfolio/show', [PortfolioController::class, 'show']);
+Route::delete('/delete-portfolio/{id}', [PortfolioController::class, 'destroy'])->name('portfolio.destroy');
+Route::put('/update-portfolio', [PortfolioController::class, 'update'])->name('portfolio.update');
+
+//Portfolio categories routes
+Route::post('/portfolioCategories/add', [PortfolioCategoriesController::class, 'store'])->name('portfolioCategories.store');
+Route::delete('/delete-portfolioCategories/{id}', [PortfolioCategoriesController::class, 'destroy'])->name('portfolioCategories.destroy');
+Route::put('/update-portfolioCategories', [PortfolioCategoriesController::class, 'update'])->name('portfolioCategories.update');

@@ -1,178 +1,237 @@
 @extends('dashborad')
 @section('content')
 <div class="jumbotron">
-    <h2>Portfolio management</h2>
+    <h2>Portfolio managment </h2>
     <hr>
-    <div class="row">
-        <div class="col-md-6">
-
-            @if(Session::has('success'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('success') }}
-            </div>
-            @endif
-
-
-            <div class="form-group">
-                <label for="exampleInputEmail1">Portfolio name</label> <br>
-                <select class="form-select form-select-lg mb-3" aria-label="Default select example" id="plansOptions">
-                    <option selected>Select Portfolio</option>
-                    @foreach($portfolioCats as $portfolioCat)
-                    <option value="{{$portfolioCat->id}}">{{$portfolioCat->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Plan price</label>
-                <input type="text" name="content" class="form-control" id="planPrice" placeholder="Content" value="">
-            </div>
-            <button class="btn btn-block" style="background-color: #2A3E50;color:aliceblue" data-toggle="modal" data-target="#myModal" id="updateBtn"><i class="fa fa-edit"></i>&nbsp;Update</button>
-            <hr>
-
-            <div class="form-group">
-                <label for="">Caracter name</label>
-                <input type="text" name="caractereName" class="form-control" placeholder="New caracter..." id="caractereName">
-            </div>
-            <button class="btn btn-block" style="background-color: #2A3E50;color:aliceblue" id="addPlanCaracter"><i class="fa fa-plus-circle"></i>&nbsp;Add</button>
+    <form method="POST" action="{{ route('portfolioCategories.store') }}">
+        @csrf
+        <div class="form-group">
+            <label for="exampleInputEmail1">Protfolio categorie</label>
+            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
         </div>
-        <div class="col-md-6">
-            <h3>Selected plan caracters</h3>
-            <hr>
-            <div class="list-group" id="caracterList"></div>
-            <br>
-            <button class="btn btn-danger btn-block" id="delBtn"><i class="fa fa-edit"></i>&nbsp;Delete selection</button>
+        <button type="submit" class="btn btn-block" style="background-color: #2A3E50;color:aliceblue"><i class="fa fa-plus-circle"></i>&nbsp;Add category</button>
+    </form>
+    <br>
+    <!-- --------------------------list of categories------------------------------------ -->
+    <h3>All categories</h3>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($portfolioCats as $cat)
+            <tr>
+                <td>{{$cat->name}}</td>
+                <td>
+                    <div style="display: flex; justify-content: space-around;">
+                        <div class="delete">
+                            <form action="{{ route('portfolioCategories.destroy', $cat->id)}}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                <input class="btn btn-danger" type="submit" value="Delete" />
+                            </form>
+                        </div>
+                        <div style="width: 1em;"></div>
+                        <div class="update">
+                            <!-- <a href="" class=" btn btn-warning">Update</a> -->
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-warning editBtn" data-toggle="modal" data-target="#exampleModal2" data-cat-id="{{$cat->id}}" data-cat-name="{{$cat->name}}" >
+                                Update
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Updating portfolio Category</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="POST" action="{{ route('portfolioCategories.update',$cat->id)}}">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Category name</label>
+                                                    <input type="text" name="id" class="form-control" id="idTxt2" aria-describedby="emailHelp" hidden placeholder="Enter title">
+                                                    <input type="text" name="name" class="form-control" id="titleTxt2" aria-describedby="emailHelp" placeholder="Enter title">
+                                                </div>
+                        
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Confirm</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- --------------------------end list of categories------------------------------------ -->
+    <hr>
+    <button type="button" class="btn btn-block" data-toggle="modal" data-target="#exampleModal1" style="background-color: #2A3E50;color:aliceblue"><i class="fa fa-plus-circle"></i>&nbsp;Add Service</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Service</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('portfolio.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Work category</label>
+                            <select class="form-select form-select-lg mb-3" aria-label="Default select example" id="plansOptions" name="category">
+                                <option selected>Select Portfolio</option>
+                                @foreach($portfolioCats as $portfolioCat)
+                                <option value="{{$portfolioCat->id}}">{{$portfolioCat->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Work title</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Link</label>
+                            <input type="text" name="link" class="form-control" id="exampleInputPassword1" placeholder="Content">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Image</label>
+                            <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" onchange="previewFile(this)">
+                            <img id="previewImg" style="max-width: 130px;margin: top 2opx;" />
+                        </div>
+                        <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+                </form>
+
+            </div>
         </div>
+    </div> <br>
+    @if(Session::has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('success') }}
     </div>
-</div>
-<div class="modal fade modal-auto-clear" data-timer="2000" id="myModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Updated successfully!</h5>
-                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-            </div>
-            <div class="modal-body">
-                <br> <br>
-                <h6 class="text-success">✅ The price of the chosen plan has been updated successfully!</h6>
-                <br>
-            </div>
-            <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div> -->
-        </div>
+    @endif
+    @if(Session::has('delete'))
+    <div class="alert alert-danger" role="alert">
+        {{ Session::get('delete') }}
     </div>
+    @endif
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Link</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($portfolio as $work)
+            <tr>
+                <td>{{$work->name}}</td>
+                <td><a href="http://{{$work->link}}">{{$work->link}}</a> </td>
+                <td> <img src="images/{{$work->image}}" alt="Work Image" width="60px" style="margin-right:5em;border-radius:.3em;">
+                </td>
+                <td>
+                    <div style="display: flex; justify-content: space-around;">
+                        <div class="delete">
+                            <form action="{{ route('portfolio.destroy', $work->id)}}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                <input class="btn btn-danger" type="submit" value="Delete" />
+                            </form>
+                        </div>
+                        <div style="width: 1em;"></div>
+                        <div class="update">
+                            <!-- <a href="" class=" btn btn-warning">Update</a> -->
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-warning editBtn" data-toggle="modal" data-target="#exampleModal" data-work-id="{{$work->id}}" data-work-name="{{$work->name}}" data-work-link="{{$work->link}}" data-work-image="{{$work->image}}">
+                                Update
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Updating portfolio item</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="POST" action="{{ route('portfolio.update',$work->id)}}" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Work name</label>
+                                                    <input type="text" name="id" class="form-control" id="idTxt" aria-describedby="emailHelp" hidden placeholder="Enter title">
+                                                    <input type="text" name="name" class="form-control" id="titleTxt" aria-describedby="emailHelp" placeholder="Enter title">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Link</label>
+                                                    <input type="text" name="link" class="form-control" id="contentTxt" placeholder="Content">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlFile1">Image</label>
+                                                    <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" onchange="previewFile(this)">
+                                                </div>
+                                                <br>
+                                                <img src="" alt="Service Image" id="imgUpdate" width="100px" style="margin-left:10em;border-radius:.3em;">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Confirm</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 <script>
     $(document).ready(function() {
-        $("#delBtn").hide();
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-        //-------getting plan caracters
-        $("#plansOptions").change(function() {
-            var planId = $(this).children("option:selected").val();
-            $.ajax({
-                url: '/plan/show',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    message: "hola",
-                    plan_id: planId,
-                },
-                dataType: 'JSON',
-                success: function(data) {
-                    $("#planPrice").val(data.selectedPlan.price);
-                    $("#caracterList").empty();
-                    data.plan_caracters.forEach(function(item) {
-                        $("#caracterList").append("<li class='list-group-item'><input class='mr-1 chkk' type='checkbox' value=" + item.id + ">" + item.name + "</li>")
-                    });
-                    $("#delBtn").show();
-                }
-            });
+        $('#exampleModal').on('show.bs.modal', function(e) {
+            var workId = $(e.relatedTarget).data('work-id');
+            var name = $(e.relatedTarget).data('work-name');
+            var link = $(e.relatedTarget).data('work-link');
+            var img = "images/" + $(e.relatedTarget).data('work-image');
+            $("#idTxt").val(workId);
+            $("#titleTxt").val(name);
+            $("#contentTxt").val(link);
+            $("#imgUpdate").attr("src", img)
         });
-
-        //-----adding plan caracter
-        $("#addPlanCaracter").click(function() {
-            var planId = $("#plansOptions").children("option:selected").val();
-            var planName = $("#caractereName").val();
-            $.ajax({
-                url: '/plan-caracters/add',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    plan_id: planId,
-                    plan_caracter: planName
-                },
-                dataType: 'JSON',
-                success: function(data) {
-                    $("#caractereName").val("");
-                    $("#caracterList").empty();
-                    data.plan_caracters.forEach(function(item) {
-                        $("#caracterList").append("<li class='list-group-item'><input class='mr-1 chkk' type='checkbox' value=" + item.id + ">" + item.name + "</li>")
-                    });
-                    $("#delBtn").show();
-                }
-            });
-        });
-
-        //updaing the price
-        $("#updateBtn").click(function() {
-            var planId = $("#plansOptions").children("option:selected").val();
-            var planPrice = $("#planPrice").val();
-            $.ajax({
-                url: '/plan/update',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    plan_id: planId,
-                    plan_price: planPrice
-                },
-                dataType: 'JSON',
-                success: function(data) {
-                    $("#caractereName").val("");
-                    $("#caracterList").empty();
-                    data.plan_caracters.forEach(function(item) {
-                        $("#caracterList").append("<li class='list-group-item'><input class='mr-1 chkk' type='checkbox' value=" + item.id + ">" + item.name + "</li>")
-                    });
-                    $("#delBtn").show();
-                }
-            });
-        });
-        //-------------------------------------modal---------------------------
-
-        $('.modal-auto-clear').on('shown.bs.modal', function() {
-            var timer = $(this).data('timer') ? $(this).data('timer') : 4000;
-            $(this).delay(timer).fadeOut(200, function() {
-                $(this).modal('hide');
-            });
-        })
-
-        // delete plan caracters
-        $("#delBtn").click(function() {
-            var planId = $("#plansOptions").children("option:selected").val();
-            var ids = []
-            $('input:checkbox.chkk').each(function() {
-                if (this.checked)
-                    ids.push($(this).val())
-            });
-            $.ajax({
-                url: '/plan-caracters/delete',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    plan_id: planId,
-                    caracters_to_delete: ids
-                },
-                dataType: 'JSON',
-                success: function(data) {
-                    $("#caractereName").val("");
-                    $("#caracterList").empty();
-                    data.plan_caracters.forEach(function(item) {
-                        $("#caracterList").append("<li class='list-group-item'><input class='mr-1 chkk' type='checkbox' value=" + item.id + ">" + item.name + "</li>")
-                    });
-                    $("#delBtn").show();
-                }
-            });
+        $('#exampleModal2').on('show.bs.modal', function(e) {
+            var catId = $(e.relatedTarget).data('cat-id');
+            var name = $(e.relatedTarget).data('cat-name');
+            $("#idTxt2").val(catId);
+            $("#titleTxt2").val(name);
         });
     });
 </script>

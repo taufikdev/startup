@@ -8,81 +8,74 @@ use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        $PortfolioCat=PortfolioCategory::all();
-        return view('portfolio',['portfolioCats'=> $PortfolioCat]);
-
+        $portfolioCat=PortfolioCategory::all();
+        $portfolio=Portfolio::all();
+        return view('portfolio',['portfolioCats'=> $portfolioCat,'portfolio'=>$portfolio]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        $portfolio = new Portfolio();
+        $portfolio->name = $request->name;
+        $portfolio->link = $request->link;
+        $portfolio->portfolio_category_id = $request->category;
+        $img = $request->file('file');
+        $imgName = time() . '.' . $img->extension();
+        $img->move(public_path('images'), $imgName);
+        $portfolio->image = $imgName;
+        $portfolio->save();
+        return back()->with('success', 'Portfolio has been Added successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function show(Request $request)
     {
-        //
+        $portfolioId = $request->portfolio_id;
+        $portfolioCategory = PortfolioCategory::find($portfolioId);
+        $protfolio = Portfolio::where('portfolio_category_id', $portfolioId)->get();
+        $response = array(
+            'status' => 'success',
+            'selectedPortfolioCategory' => $portfolioCategory,
+            'protfolio' => $protfolio,
+        );
+        return response()->json($response);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+    public function update(Request $request)
     {
-        //
+        $protfolio = Portfolio::findOrFail($request->id);
+        $protfolio->name = $request->name;
+        $protfolio->link = $request->link;
+        $img = $request->file('file');
+        $imgName = time() . '.' . $img->extension();
+        $img->move(public_path('images'), $imgName);
+        $protfolio->image = $imgName;
+        $protfolio->save();
+        return back()->with('success', 'service has been updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
-        //
+        $portfolio = Portfolio::find($id);
+        $portfolio->delete();
+        return back()->with('delete', 'This work has been deleted successfully');
     }
 }

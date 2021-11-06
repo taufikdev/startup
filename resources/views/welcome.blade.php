@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DevFolio - Developer Portfolio Template</title>
+    <title>Webinframe - Developer Portfolio Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -29,10 +29,11 @@
     <!-- Nav Bar Start -->
     <div class="navbar navbar-expand-lg bg-light navbar-light">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">DevLab</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <!-- <a href="index.html" class="navbar-brand">Webinframe</a> -->
+            <a href=""> <img src="img/mylogo2.png" width="80px"></a>
+            <!-- <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> -->
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
@@ -57,18 +58,20 @@
     <div class="hero" id="home">
         <div class="container-fluid">
             <div class="row align-items-center">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-6 mt-4">
                     <div class="hero-content">
                         <div class="hero-text">
                             <p>Welcome To </p>
                             <h1>{{ strtoupper($heros->title) }}</h1>
                             <h2></h2>
                             <!-- <div class="typed-text">Web Design, Web Development, Front End Development, Apps Design, Apps Development</div> -->
-                            <div class="typed-text">{{ $heros->content }}</div>
+                            <div class="typed-text">
+                                <p style="color:#ED428B;"> {{ $heros->content }}</p>
+                            </div>
                         </div>
-                        <div class="hero-btn">
-                            <a class="btn" href="">Hire Us</a>
-                            <a class="btn" href="">Contact Us</a>
+                        <div class="hero-btn mt-4">
+                            <a class="btn" href="">Hire Us</a> &nbsp;&nbsp;
+                            <a class="btn" href="#contact">Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -86,8 +89,8 @@
     <div class="service" id="service">
         <div class="container">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                <p>What we do</p>
-                <h2>Awesome Quality Services</h2>
+                <p>CE QUE NOUS FAISONS</p>
+                <h2> Services de qualité impressionnants</h2>
             </div>
             <div class="row">
                 @foreach($services as $service)
@@ -157,18 +160,19 @@
         <div class="container">
             <div class="section-header text-center">
                 <p>Annonces</p>
-                <h2>Get A <span>Special</span> Price</h2>
+                <!-- <h2>Get A <span>Special</span> Price</h2> -->
+                <h2>Obtenez un prix <span>spécial</span> </h2>
             </div>
             <div class="container banner-text">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus.
                 </p>
-                <a class="btn">Plan tarifaire</a>
+                <br>
+                <a href="#price" class="btn">Plan tarifaire</a>
             </div>
         </div>
     </div>
     <!-- Banner End -->
-
 
     <!-- Portfolio Start -->
     <div class="portfolio" id="portfolio">
@@ -181,25 +185,29 @@
                 <div class="col-12">
                     <ul id="portfolio-filter">
                         <li data-filter="*" class="filter-active">All</li>
-                        <li data-filter=".filter-1">Web Design</li>
-                        <li data-filter=".filter-2">Mobile Apps</li>
-                        <li data-filter=".filter-3">Game Dev</li>
+                        @foreach($categories as $cat)
+                        <li data-filter=".filter-{{$cat->id}}">{{$cat->name}}</li>
+                        @endforeach
+                        <!-- <li data-filter=".filter-2">Mobile Apps</li>
+                        <li data-filter=".filter-3">Game Dev</li> -->
                     </ul>
                 </div>
             </div>
             <div class="row portfolio-container">
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.0s">
+                @foreach($portfolio as $item)
+                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-{{$item->portfolio_category_id}} wow fadeInUp" data-wow-delay="0.0s">
                     <div class="portfolio-wrap">
                         <div class="portfolio-img">
-                            <img src="img/portfolio-1.jpg" alt="Image">
+                            <img src="images/{{$item->image}}" alt="Image" width="385px" height="288.75px">
                         </div>
                         <div class="portfolio-text">
-                            <h3>eCommerce Website</h3>
-                            <a class="btn" href="img/portfolio-1.jpg" data-lightbox="portfolio">+</a>
+                            <h3>{{$item->name}}</h3>
+                            <a class="btn" href="images/{{$item->image}}" data-lightbox="portfolio">+</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.2s">
+                @endforeach
+                <!-- <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="portfolio-wrap">
                         <div class="portfolio-img">
                             <img src="img/portfolio-2.jpg" alt="Image">
@@ -209,8 +217,8 @@
                             <a class="btn" href="img/portfolio-2.jpg" data-lightbox="portfolio">+</a>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-3 wow fadeInUp" data-wow-delay="0.4s">
+                </div> -->
+                <!-- <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-33 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="portfolio-wrap">
                         <div class="portfolio-img">
                             <img src="img/portfolio-3.jpg" alt="Image">
@@ -231,8 +239,8 @@
                             <a class="btn" href="img/portfolio-4.jpg" data-lightbox="portfolio">+</a>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.8s">
+                </div> -->
+                <!-- <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.8s">
                     <div class="portfolio-wrap">
                         <div class="portfolio-img">
                             <img src="img/portfolio-5.jpg" alt="Image">
@@ -243,7 +251,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-3 wow fadeInUp" data-wow-delay="1s">
+                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-33 wow fadeInUp" data-wow-delay="1s">
                     <div class="portfolio-wrap">
                         <div class="portfolio-img">
                             <img src="img/portfolio-6.jpg" alt="Image">
@@ -253,7 +261,7 @@
                             <a class="btn" href="img/portfolio-6.jpg" data-lightbox="portfolio">+</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -389,7 +397,7 @@
     <div class="testimonial wow fadeInUp" data-wow-delay="0.1s" id="review">
         <div class="text-center wow zoomIn" data-wow-delay="0.1s">
             <h3>Our stack</h3>
-            <hr style="border-bottom: 4px solid #ED428B; width: 100px;border-radius: .3em;top:-4px;">
+            <hr style="border-bottom: 4px solid white; width: 100px;border-radius: .3em;top:-4px;">
             <p style="font-size: larger;color:white;">we work with latest technologies in the market</p>
         </div>
         <br>
@@ -437,7 +445,7 @@
                                     <p class="help-block"></p>
                                 </div>
                                 <div>
-                                    <button class="btn2 btn-block" type="submit" id="sendMessageButton" style="border-radius: .3em;">Send Message</button>
+                                    <button class="btn btn-block" type="submit" id="sendMessageButton" style="border-radius: .3em;">Send Message</button>
                                 </div>
                             </form>
                         </div>
@@ -469,14 +477,14 @@
                 </div>
             </div>
             <div class="container copyright">
-                <p>&copy; <a href="#">FESCODE</a>, All Right Reserved</p>
+                <p>&copy; <a href="#">WEBINFRAME</a>, All Right Reserved</p>
             </div>
         </div>
     </div>
     <!-- Footer End -->
 
     <!-- Back to top button -->
-    <a href="#" class="btn2 back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
 
     <!-- Pre Loader -->
     <div id="loader" class="show">
