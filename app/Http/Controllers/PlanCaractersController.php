@@ -36,25 +36,21 @@ class PlanCaractersController extends Controller
         return response()->json($response);
     }
 
-   
     public function show($id)
     {
         //
     }
 
-   
     public function edit($id)
     {
         //
     }
-
     
     public function update(Request $request, $id)
     {
         //
     }
 
-    
     public function destroy(Request $request)
     {
         $planId = $request->plan_id;

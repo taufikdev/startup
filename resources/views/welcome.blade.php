@@ -74,8 +74,7 @@
                 </div>
                 <div class="col-sm-12 col-md-6 d-none d-md-block">
                     <div class="hero-image">
-
-                        <img src="images/{{$heros->img}}" alt="Hero Image" width="500px" style="margin-left:4em;">
+                        <img src="images/{{$heros->img}}" alt="Hero Image" width="600px" height="600px">
                     </div>
                 </div>
             </div>
@@ -385,55 +384,32 @@
     <!-- Price End -->
 
 
+
     <!-- Testimonial Start -->
     <div class="testimonial wow fadeInUp" data-wow-delay="0.1s" id="review">
+        <div class="text-center wow zoomIn" data-wow-delay="0.1s">
+            <h3>Our stack</h3>
+            <hr style="border-bottom: 4px solid #ED428B; width: 100px;border-radius: .3em;top:-4px;">
+            <p style="font-size: larger;color:white;">we work with latest technologies in the market</p>
+        </div>
+        <br>
         <div class="container">
-            <div class="testimonial-icon">
-                <i class="fa fa-quote-left"></i>
-            </div>
-            <div class="owl-carousel testimonials-carousel">
-                <div class="testimonial-item">
-                    <div class="testimonial-img">
-                        <img src="img/testimonial-1.jpg" alt="Image">
-                    </div>
-                    <div class="testimonial-text">
-                        <p>
-                            Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum. Lorem ipsum dolor sit amet consec adipis elit.
-                        </p>
-                        <h3>Customer Name</h3>
-                        <h4>Profession</h4>
+            <div class="owl-carousel owl-theme brands_slider">
+                @foreach($stack as $stk)
+                <div class="owl-item">
+                    <div class="brands_item d-flex flex-column justify-content-center" style="align-items: center;">
+                        <img src="images/{{$stk->image}}" alt="Image">
+                        <br>
+                        <h6 style="color: #fff;">{{$stk->name}}</h6>
                     </div>
                 </div>
-                <div class="testimonial-item">
-                    <div class="testimonial-img">
-                        <img src="img/testimonial-2.jpg" alt="Image">
-                    </div>
-                    <div class="testimonial-text">
-                        <p>
-                            Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum. Lorem ipsum dolor sit amet consec adipis elit.
-                        </p>
-                        <h3>Customer Name</h3>
-                        <h4>Profession</h4>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="testimonial-img">
-                        <img src="img/testimonial-3.jpg" alt="Image">
-                    </div>
-                    <div class="testimonial-text">
-                        <p>
-                            Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum. Lorem ipsum dolor sit amet consec adipis elit.
-                        </p>
-                        <h3>Customer Name</h3>
-                        <h4>Profession</h4>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            </div> <!-- Brands Slider Navigation -->
+            <div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
+            <div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
         </div>
     </div>
     <!-- Testimonial End -->
-
-
     <!-- Contact Start -->
     <div class="contact wow fadeInUp" data-wow-delay="0.1s" id="contact">
         <div class="container-fluid">
@@ -461,7 +437,7 @@
                                     <p class="help-block"></p>
                                 </div>
                                 <div>
-                                    <button class="btn" type="submit" id="sendMessageButton">Send Message</button>
+                                    <button class="btn2 btn-block" type="submit" id="sendMessageButton" style="border-radius: .3em;">Send Message</button>
                                 </div>
                             </form>
                         </div>
@@ -472,10 +448,8 @@
     </div>
     <!-- Contact End -->
 
-
-
     <!-- Footer Start -->
-    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+    <div class="footer shape wow fadeIn" data-wow-delay="0.3s">
         <div class="container-fluid">
             <div class="container">
                 <div class="footer-info">
@@ -501,17 +475,13 @@
     </div>
     <!-- Footer End -->
 
-
     <!-- Back to top button -->
-    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
-
+    <a href="#" class="btn2 back-to-top"><i class="fa fa-chevron-up"></i></a>
 
     <!-- Pre Loader -->
     <div id="loader" class="show">
         <div class="loader"></div>
     </div>
-
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -530,5 +500,103 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
+<script>
+    $(document).ready(function() {
+
+        if ($('.brands_slider').length) {
+            var brandsSlider = $('.brands_slider');
+
+            brandsSlider.owlCarousel({
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                nav: false,
+                dots: false,
+                autoWidth: true,
+                items: 8,
+                margin: 42
+            });
+
+            if ($('.brands_prev').length) {
+                var prev = $('.brands_prev');
+                prev.on('click', function() {
+                    brandsSlider.trigger('prev.owl.carousel');
+                });
+            }
+
+            if ($('.brands_next').length) {
+                var next = $('.brands_next');
+                next.on('click', function() {
+                    brandsSlider.trigger('next.owl.carousel');
+                });
+            }
+        }
+
+
+    });
+</script>
+<style>
+    .brands {
+        width: 100%;
+        padding-top: 90px;
+        padding-bottom: 90px
+    }
+
+    .brands_slider_container {
+        height: 130px;
+        border: solid 1px #e8e8e8;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+        padding-left: 97px;
+        padding-right: 97px;
+        background: #fff
+    }
+
+    .brands_slider {
+        height: 100%;
+    }
+
+    .brands_item {
+        height: 150px;
+        width: 100px;
+    }
+
+    .brands_item img {
+        width: 50px;
+        height: 85px;
+    }
+
+    .brands_nav {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+        padding: 5px;
+        cursor: pointer
+    }
+
+    .brands_nav i {
+        color: #e5e5e5;
+        -webkit-transition: all 200ms ease;
+        -moz-transition: all 200ms ease;
+        -ms-transition: all 200ms ease;
+        -o-transition: all 200ms ease;
+        transition: all 200ms ease
+    }
+
+    .brands_nav:hover i {
+        color: #676767
+    }
+
+    .brands_prev {
+        left: 40px;
+    }
+
+    .brands_next {
+        right: 40px
+    }
+</style>
 
 </html>

@@ -8,6 +8,8 @@ use App\Http\Controllers\PlanCaractersController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\StackController;
+use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,3 +56,15 @@ Route::post('/plan/update', [PlanController::class, 'update']);
 //Plan Caracters routes
 Route::post('/plan-caracters/add', [PlanCaractersController::class, 'store']);
 Route::post('/plan-caracters/delete', [PlanCaractersController::class, 'destroy']);
+
+//Stack routes
+
+Route::get('/add-Stack', [StackController::class, 'index']);
+Route::post('/add-Stack', [StackController::class, 'store'])->name('Stack.store');
+Route::delete('/delete-Stack/{id}', [StackController::class, 'destroy'])->name('Stack.destroy');
+Route::put('/update-stack', [StackController::class, 'update'])->name('stack.update');
+
+
+//Portfolio routes
+
+Route::get('/portfolio', [PortfolioController::class, 'index']);

@@ -23,6 +23,7 @@
     <!-- <link href="/dachboardStyle.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="{{ asset('/css/dachboardStyle.css') }}">
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -38,7 +39,7 @@
                     <a href="/add-service">
                         <li class="itemo"><i class="fa fa-cubes"></i>&nbsp; Services </li>
                     </a>
-                    <a href="">
+                    <a href="/portfolio">
                         <li class="itemo"><i class="fa fa-laptop"></i>&nbsp;Portfolio </li>
                     </a>
                     <a href="/discount">
@@ -47,7 +48,7 @@
                     <a href="/plan">
                         <li class="itemo"><i class="fa fa-donate"></i>&nbsp;&nbsp;Plans </li>
                     </a>
-                    <a href="">
+                    <a href="/add-Stack">
                         <li class="itemo"><i class="fa fa-layer-group"></i>&nbsp;&nbsp;Stack </li>
                     </a>
                     <a href="/contact">
