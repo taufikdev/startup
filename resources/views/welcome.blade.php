@@ -3,11 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Webinframe - Developer Portfolio Template</title>
+    <title>Webinframe</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
-
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -52,7 +51,6 @@
         </div>
     </div>
     <!-- Nav Bar End -->
-
 
     <!-- Hero Start -->
     <div class="hero" id="home">
@@ -305,11 +303,6 @@
                         <div class="price-body">
                             <div class="price-description">
                                 <ul>
-                                    <!-- <li>Bootstrap 4</li>
-                                    <li>Font Awesome 5</li>
-                                    <li>Responsive Design</li>
-                                    <li>Browser Compatibility</li> -->
-                                    <!-- <li>Easy To Use</li> -->
                                     @foreach($plan_caracters as $caracter)
                                     @if($caracter->plan_id == $plans[0]->id)
                                     <li>{{$caracter->name}}</li>
@@ -338,11 +331,6 @@
                         <div class="price-body">
                             <div class="price-description">
                                 <ul>
-                                    <!-- <li>Bootstrap 4</li>
-                                    <li>Font Awesome 5</li>
-                                    <li>Responsive Design</li>
-                                    <li>Browser Compatibility</li>
-                                    <li>Easy To Use</li> -->
                                     @foreach($plan_caracters as $caracter)
                                     @if($caracter->plan_id == $plans[1]->id)
                                     <li>{{$caracter->name}}</li>

@@ -1,4 +1,4 @@
-@extends('dashborad')
+@extends('layouts.app')
 @section('content')
 <div class="jumbotron">
     <h2>Stack managment </h2>
@@ -98,8 +98,8 @@
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Stack Name</label>
-                                                    <input type="text" name="id" class="form-control" id="idTxt" aria-describedby="emailHelp" hidden placeholder="Enter title" >
-                                                    <input type="text" name="name" class="form-control" id="titleTxt" aria-describedby="emailHelp" placeholder="Enter title" >
+                                                    <input type="text" name="id" class="form-control" id="idTxt" aria-describedby="emailHelp" hidden placeholder="Enter title">
+                                                    <input type="text" name="name" class="form-control" id="titleTxt" aria-describedby="emailHelp" placeholder="Enter title">
                                                 </div>
 
                                                 <div class="form-group">

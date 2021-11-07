@@ -161,7 +161,8 @@ a:focus {
 /*********** Nav Bar CSS **********/
 /**********************************/
 .navbar {
-    position: relative;
+    /* position: relative;    */    /*<<<-------this what caused the offset--------*/
+    position: absolute;
     transition: .5s;
     z-index: 999;
 }

@@ -1,4 +1,4 @@
-@extends('dashborad')
+@extends('layouts.app')
 @section('content')
 <div class="jumbotron">
     <h2>Discount management</h2>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Description</label>
-                    <textarea  name="description" class="form-control" id="exampleInputPassword1" placeholder="Content" >{{$discount->description}}</textarea>
+                    <textarea name="description" class="form-control" id="exampleInputPassword1" placeholder="Content">{{$discount->description}}</textarea>
                 </div>
 
                 <button type="submit" class="btn btn-block" style="background-color: #2A3E50;color:aliceblue"><i class="fa fa-edit"></i>&nbsp;Update</button>

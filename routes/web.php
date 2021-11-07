@@ -13,7 +13,7 @@ use App\Http\Controllers\StackController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PortfolioCategory;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -22,14 +22,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('hero');
 // });
 
-Route::get('/cms',[CmsController::class,'index']);
+// Route::get('/cms',[CmsController::class,'index']);
 
 //Hero routes
-
-Route::get('/',[WelcomeController::class,'index']);
-Route::get('/add-hero',[HeroController::class,'addHero']);
-Route::post('/add-hero', [HeroController::class, 'store'])->name('hero.store');
-Route::post('/add-hero', [HeroController::class, 'update'])->name('hero.update');
+Route::group(['middleware' => 'auth'],function () {
+    Route::get('/cms',[CmsController::class,'index']);
+    Route::get('/',[WelcomeController::class,'index']);
+    Route::get('/add-hero',[HeroController::class,'addHero']);
+    Route::post('/add-hero', [HeroController::class, 'store'])->name('hero.store');
+    Route::post('/add-hero', [HeroController::class, 'update'])->name('hero.update');
 
 // services routes 
 Route::get('/add-service', [ServicesController::class, 'index']);
@@ -79,3 +80,8 @@ Route::put('/update-portfolio', [PortfolioController::class, 'update'])->name('p
 Route::post('/portfolioCategories/add', [PortfolioCategoriesController::class, 'store'])->name('portfolioCategories.store');
 Route::delete('/delete-portfolioCategories/{id}', [PortfolioCategoriesController::class, 'destroy'])->name('portfolioCategories.destroy');
 Route::put('/update-portfolioCategories', [PortfolioCategoriesController::class, 'update'])->name('portfolioCategories.update');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,4 +1,4 @@
-@extends('dashborad')
+@extends('layouts.app')
 @section('content')
 <div class="jumbotron">
     <h2>Portfolio managment </h2>
@@ -38,7 +38,7 @@
                         <div class="update">
                             <!-- <a href="" class=" btn btn-warning">Update</a> -->
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-warning editBtn" data-toggle="modal" data-target="#exampleModal2" data-cat-id="{{$cat->id}}" data-cat-name="{{$cat->name}}" >
+                            <button type="button" class="btn btn-warning editBtn" data-toggle="modal" data-target="#exampleModal2" data-cat-id="{{$cat->id}}" data-cat-name="{{$cat->name}}">
                                 Update
                             </button>
                             <!-- Modal -->
@@ -60,7 +60,7 @@
                                                     <input type="text" name="id" class="form-control" id="idTxt2" aria-describedby="emailHelp" hidden placeholder="Enter title">
                                                     <input type="text" name="name" class="form-control" id="titleTxt2" aria-describedby="emailHelp" placeholder="Enter title">
                                                 </div>
-                        
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
