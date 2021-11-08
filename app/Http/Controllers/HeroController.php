@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hero;
 use Illuminate\Http\Request;
+use File;
 
 class HeroController extends Controller
 {
@@ -15,6 +16,9 @@ class HeroController extends Controller
     public function update(Request $request)
     {
         $hero = Hero::findOrFail($request->id);
+        if (File::exists(public_path('images') . '/' . $hero->img)) {
+            File::delete(public_path('images') . '/' . $hero->img);
+        }
         $hero->title = $request->title;
         $hero->content = $request->content;
         $img = $request->file('file');

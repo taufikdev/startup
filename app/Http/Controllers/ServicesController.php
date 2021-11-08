@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Services;
 use Illuminate\Http\Request;
-
+use File;
 class ServicesController extends Controller
 {
     
@@ -47,9 +47,12 @@ class ServicesController extends Controller
     }
 
     
-    public function update(Request $request,$id)
+    public function update(Request $request)
     {
         $service = Services::findOrFail($request->id);
+        if (File::exists(public_path('images').'/'. $service->img)) {
+            File::delete(public_path('images') . '/' . $service->img);
+        }
         // dd($service->title.' / '. $request->id);
         $service->title = $request->title;
         $service->content = $request->content;

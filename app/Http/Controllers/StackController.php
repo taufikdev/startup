@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stack;
 use Illuminate\Http\Request;
+use File;
 
 class StackController extends Controller
 {
@@ -78,7 +79,9 @@ class StackController extends Controller
     public function update(Request $request)
     {
         $Stack = Stack::findOrFail($request->id);
-        // dd($service->title.' / '. $request->id);
+        if (File::exists(public_path('images') . '/' . $Stack->image)) {
+            File::delete(public_path('images') . '/' . $Stack->image);
+        }
         $Stack->name = $request->name;
         $img = $request->file('file');
         $imgName = time() . '.' . $img->extension();

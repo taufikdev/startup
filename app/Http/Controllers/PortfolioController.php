@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Portfolio;
 use App\Models\PortfolioCategory;
 use Illuminate\Http\Request;
-
+use File;
 class PortfolioController extends Controller
 {
     
@@ -61,6 +61,9 @@ class PortfolioController extends Controller
     public function update(Request $request)
     {
         $protfolio = Portfolio::findOrFail($request->id);
+        if (File::exists(public_path('images') . '/' . $protfolio->image)) {
+            File::delete(public_path('images') . '/' . $protfolio->image);
+        }
         $protfolio->name = $request->name;
         $protfolio->link = $request->link;
         $img = $request->file('file');

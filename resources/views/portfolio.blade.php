@@ -150,7 +150,7 @@
             @foreach($portfolio as $work)
             <tr>
                 <td>{{$work->name}}</td>
-                <td><a href="http://{{$work->link}}">{{$work->link}}</a> </td>
+                <td><a href="{{$work->link}}">{{$work->link}}</a> </td>
                 <td> <img src="images/{{$work->image}}" alt="Work Image" width="60px" style="margin-right:5em;border-radius:.3em;">
                 </td>
                 <td>
