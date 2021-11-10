@@ -15,6 +15,11 @@ class HeroController extends Controller
     }
     public function update(Request $request)
     {
+
+        if (!$request->hasFile('file')) {
+            return back()->with('error', 'choose a photo please');
+        }
+
         $hero = Hero::findOrFail($request->id);
         if (File::exists(public_path('images') . '/' . $hero->img)) {
             File::delete(public_path('images') . '/' . $hero->img);

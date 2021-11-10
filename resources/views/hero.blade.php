@@ -10,22 +10,27 @@
             <div class="alert alert-success" role="alert">
                 {{ Session::get('success') }}
             </div>
-            @endif
+             @endif
+            @if(Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('error') }}
+            </div>
+             @endif
             <form method="POST" action="{{ route('hero.update') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Site title</label>
 
                     <input type="text" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" hidden placeholder="Enter title" value="{{$heros->id}}">
-                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title" value="{{$heros->title}}">
+                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required placeholder="Enter title" value="{{$heros->title}}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Content</label>
-                    <input type="text" name="content" class="form-control" id="exampleInputPassword1" placeholder="Content" value="{{$heros->content}}">
+                    <input type="text" name="content" class="form-control" id="exampleInputPassword1" required placeholder="Content" value="{{$heros->content}}">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Image</label>
-                    <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" onchange="previewFile(this)">
+                    <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" required onchange="previewFile(this)">
                     <img id="previewImg" style="max-width: 130px;margin: top 2opx;" />
                 </div>
                 <button type="submit" class="btn btn-block" style="background-color: #2A3E50;color:aliceblue"><i class="fa fa-edit"></i>&nbsp;Update</button>

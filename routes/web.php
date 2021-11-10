@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AnouncementController;
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DiscountController;
@@ -47,6 +49,9 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('/discount', [DiscountController::class, 'index']);
     Route::post('/discount/update', [DiscountController::class, 'update'])->name('discount.update');
 
+    //Anouncement routes
+    Route::get('/anouncement', [AnouncementController::class, 'index']);
+    Route::post('/anouncement/update', [AnouncementController::class, 'update'])->name('anouncement.update');
 
     //plan routes
     Route::get('/plan', [PlanController::class, 'index']);
@@ -60,15 +65,12 @@ Route::group(['middleware' => 'auth'],function () {
     Route::post('/plan-caracters/delete', [PlanCaractersController::class, 'destroy']);
 
     //Stack routes
-
     Route::get('/add-Stack', [StackController::class, 'index']);
     Route::post('/add-Stack', [StackController::class, 'store'])->name('Stack.store');
     Route::delete('/delete-Stack/{id}', [StackController::class, 'destroy'])->name('Stack.destroy');
     Route::put('/update-stack', [StackController::class, 'update'])->name('stack.update');
 
-
     //Portfolio routes
-
     Route::get('/portfolio', [PortfolioController::class, 'index']);
     Route::post('/portfolio/add', [PortfolioController::class, 'store'])->name('portfolio.store');
     Route::post('/portfolio/show', [PortfolioController::class, 'show']);

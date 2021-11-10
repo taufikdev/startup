@@ -27,7 +27,7 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Image</label>
-                            <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" onchange="previewFile(this)">
+                            <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" required onchange="previewFile(this)">
                             <img id="previewImg" style="max-width: 130px;margin: top 2opx;" />
                         </div>
                         <br>
@@ -104,7 +104,7 @@
 
                                                 <div class="form-group">
                                                     <label for="exampleFormControlFile1">Image</label>
-                                                    <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" onchange="previewFile(this)">
+                                                    <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" required onchange="previewFile(this)">
                                                 </div>
                                                 <br>
                                                 <img src="" alt="Service Image" id="imgUpdate" width="100px" style="margin-left:10em;border-radius:.3em;">

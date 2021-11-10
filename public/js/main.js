@@ -1,4 +1,5 @@
 (function ($) {
+    $('#darklog').hide();
     "use strict";
     
     // loader
@@ -20,8 +21,13 @@
     $(window).scroll(function () {
         if ($(this).scrollTop() > 200) {
             $('.back-to-top').fadeIn('slow');
+            $('#darklog').show("slow");
+            $('#lightlog').hide("slow");
+
         } else {
             $('.back-to-top').fadeOut('slow');
+            $('#darklog').hide("slow");
+            $('#lightlog').show("slow");
         }
     });
     $('.back-to-top').click(function () {
